@@ -22,11 +22,6 @@ jobs:
         env:
           CERTORAKEY: ${{ secrets.CERTORAKEY }}
         run: echo "key length" ${#CERTORAKEY}
-      
-      - name: Install Foundry
-        uses: foundry-rs/foundry-toolchain@v1
-        with:
-          version: 1.0.0
 
       - name: Install python
         uses: actions/setup-python@v2
@@ -44,6 +39,14 @@ jobs:
           wget https://github.com/ethereum/solidity/releases/download/v0.8.16/solc-static-linux
           chmod +x solc-static-linux
           sudo mv solc-static-linux /usr/local/bin/solc8.16
+      
+      - name: Install Foundry
+        uses: foundry-rs/foundry-toolchain@v1
+        with: { version: 1.0.0 }
+
+      - name: Install node dependencies
+        run:  |
+          npm i
       
       - name: Verify rule ${{ matrix.rule }}
         run: |
