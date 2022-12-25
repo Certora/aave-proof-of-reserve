@@ -51,7 +51,6 @@ jobs:
       
       - name: Verify rule ${{ matrix.rule }}
         run: |
-          npm i
           cd certora
           touch applyHarness.patch
           make munged
