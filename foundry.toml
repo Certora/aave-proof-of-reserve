@@ -4,6 +4,7 @@ test = 'tests'
 out = 'out'
 libs = ['lib']
 gas_reports = ["ProofOfReserveExecutorV2"]
+script = 'scripts'
 remappings = [
     'forge-std/=lib/forge-std/src/',
     'solidity-utils/=lib/solidity-utils/src/',
@@ -20,5 +21,8 @@ polygon = "${RPC_POLYGON}"
 arbitrum = "${RPC_ARBITRUM}"
 fantom = "${RPC_FANTOM}"
 harmony = "${RPC_HARMONY}"
+
+[etherscan]
+avalanche={key="${ETHERSCAN_API_KEY_AVALANCHE}",chainId=43114}
 
 # See more config options https://github.com/gakonst/foundry/tree/master/config
