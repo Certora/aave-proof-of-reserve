@@ -4,20 +4,23 @@ pragma solidity ^0.8.0;
 import '../munged/contracts/ProofOfReserveAggregator.sol';
 
 contract ProofOfReserveAggregatorHarness is ProofOfReserveAggregator {
+  bool public allBacked;
+  bool[] public unbackedFlags;
 
-    bool public allBacked;
-    bool[] public unbackedFlags;
+  constructor(address owner) ProofOfReserveAggregator(owner) {}
 
-    function areAllReservesBackedCorrelation(address[] calldata assets) public returns (bool) {
-        bool exist_unbacked = false;
-        
-        (allBacked, unbackedFlags) = this.areAllReservesBacked(assets);
-        for (uint256 i = 0; i < unbackedFlags.length; i++){
-            if (unbackedFlags[i]){
-                exist_unbacked = true;
-                break;
-            }
-        }
-        return !exist_unbacked;
+ function areAllReservesBackedCorrelation(
+    address[] calldata assets
+  ) public returns (bool) {
+    bool exist_unbacked = false;
+
+    (allBacked, unbackedFlags) = this.areAllReservesBacked(assets);
+    for (uint256 i = 0; i < unbackedFlags.length; i++) {
+      if (unbackedFlags[i]) {
+        exist_unbacked = true;
+        break;
+      }
     }
+    return !exist_unbacked;
+  }
 }
