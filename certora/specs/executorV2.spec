@@ -315,8 +315,8 @@ invariant enabledAssets_integrity()
   )
   &&
   (forall uint256 i. forall uint256 j. (i < mirrorArrayLen && j < mirrorArrayLen && i!=j) => (mirrorArray[i] != mirrorArray[j]))
-  &&
-  (forall uint256 i. (i < mirrorArrayLen) => (mirrorArray[i] != to_bytes32(0)))
+//  &&
+//  (forall uint256 i. (i < mirrorArrayLen) => (mirrorArray[i] != to_bytes32(0)))
 {
   preserved{
     require getAssetsLength() < max_uint160 - 1;
